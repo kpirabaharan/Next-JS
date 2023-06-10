@@ -1,0 +1,6 @@
+{
+  "sales": [
+    { "id": "s1", "username": "Keeshigan", "volume": "100" },
+    { "id": "s2", "username": "Biranugan", "volume": "50" }
+  ]
+}

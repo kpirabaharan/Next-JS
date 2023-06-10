@@ -5,6 +5,9 @@ const UserProfilePage = (props) => {
 export async function getServerSideProps(context) {
   const { params, req, res } = context;
 
+  // Generated every refresh, REAL server side rendering
+  console.log('Server-side Code');
+
   // console.log(req);
   // console.log(res);
 

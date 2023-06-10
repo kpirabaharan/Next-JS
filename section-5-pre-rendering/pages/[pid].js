@@ -7,9 +7,9 @@ const ProductDetailPage = (props) => {
 
   // If page is not pre-rendered, we still have something to show and it doesnt break
   // Or we can set fallback to 'blocking'
-  // if (!loadedProduct) {
-  //   return <p>Loading...</p>;
-  // }
+  if (!loadedProduct) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <Fragment>
@@ -33,6 +33,11 @@ export async function getStaticProps(context) {
 
   const product = data.products.find((product) => product.id === productId);
 
+  // If we fail to fetch a product for the route entered, we can send user to error page when fallback is true.
+  if (!product) {
+    return { notFound: true };
+  }
+
   return {
     props: {
       loadedProduct: product,
@@ -48,7 +53,7 @@ export async function getStaticPaths() {
 
   return {
     paths: pathsWithParams,
-    fallback: 'blocking',
+    fallback: true,
   };
 }
 

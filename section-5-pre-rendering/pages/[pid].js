@@ -5,6 +5,12 @@ import { Fragment } from 'react';
 const ProductDetailPage = (props) => {
   const { loadedProduct } = props;
 
+  // If page is not pre-rendered, we still have something to show and it doesnt break
+  // Or we can set fallback to 'blocking'
+  // if (!loadedProduct) {
+  //   return <p>Loading...</p>;
+  // }
+
   return (
     <Fragment>
       <h1>{loadedProduct.title}</h1>
@@ -38,18 +44,18 @@ export async function getStaticPaths() {
           pid: 'p1',
         },
       },
-      {
-        params: {
-          pid: 'p2',
-        },
-      },
-      {
-        params: {
-          pid: 'p3',
-        },
-      },
+      // {
+      //   params: {
+      //     pid: 'p2',
+      //   },
+      // },
+      // {
+      //   params: {
+      //     pid: 'p3',
+      //   },
+      // },
     ],
-    fallback: false,
+    fallback: 'blocking',
   };
 }
 

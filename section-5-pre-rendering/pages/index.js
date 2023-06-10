@@ -10,7 +10,7 @@ function HomePage(props) {
     <ul>
       {products.map((prod) => (
         <li key={prod.id}>
-          <Link href={`/${prod.id}`}>
+          <Link href={`/products/${prod.id}`}>
             <h1>{prod.title}</h1>
           </Link>
         </li>

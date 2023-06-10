@@ -8,8 +8,6 @@ export async function getServerSideProps(context) {
   // console.log(req);
   // console.log(res);
 
-  
-
   return {
     props: {
       username: 'Keeshigan',

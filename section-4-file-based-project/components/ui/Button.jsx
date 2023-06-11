@@ -3,10 +3,17 @@ import Link from 'next/link';
 import classes from './Button.module.css';
 
 const Button = (props) => {
+  if (props.link) {
+    return (
+      <Link className={classes.btn} href={props.link}>
+        {props.children}
+      </Link>
+    );
+  }
   return (
-    <Link className={classes.btn} href={props.link}>
+    <button className={classes.btn} onClick={props.onClick}>
       {props.children}
-    </Link>
+    </button>
   );
 };
 

@@ -1,5 +1,5 @@
-import AddressIcon from '../events/icons/AddressIcon';
-import DateIcon from '../events/icons/DateIcon';
+import AddressIcon from '../icons/AddressIcon';
+import DateIcon from '../icons/DateIcon';
 import LogisticsItem from './LogisticsItem';
 import classes from './EventLogistics.module.css';
 

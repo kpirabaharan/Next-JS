@@ -4,13 +4,19 @@ function HomePage() {
   const emailInputRef = useRef();
   const feedbackInputRef = useRef();
 
-  const submitFormHandler = (event) => {
+  const submitFormHandler = async (event) => {
     event.preventDefault();
 
     const email = emailInputRef.current.value;
     const text = feedbackInputRef.current.value;
 
-    fetch();
+    const reqBody = { email, text };
+
+    const response = await fetch('/api/feedback', {
+      method: 'POST',
+      body: JSON.stringify(reqBody),
+      headers: { 'Content-Type': 'application/json' },
+    });
   };
 
   return (
@@ -25,7 +31,7 @@ function HomePage() {
           <label htmlFor='feedback'>Your Feedback </label>
           <textarea id='feedback' rows='5' ref={feedbackInputRef} />
         </div>
-        <button>Send Feedback</button>
+        <button onClick={submitFormHandler}>Send Feedback</button>
       </form>
     </div>
   );

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const buildAndExtractFeedback = () => {
+export const buildAndExtractFeedback = () => {
   const filePath = path.join(process.cwd(), 'data', 'feedback.json');
   const fileData = fs.readFileSync(filePath);
   return JSON.parse(fileData);

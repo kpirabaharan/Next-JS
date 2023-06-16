@@ -1,14 +1,30 @@
-import React from 'react';
+import { useState } from 'react';
 
 import { buildAndExtractFeedback } from '../api/feedback';
 
 const FeedbackPage = (props) => {
+  const [feedbackData, setFeedbackData] = useState();
+
+  const detailsHandler = async (id) => {
+    const response = await fetch(`/api/${id}`);
+    const data = await response.json();
+    setFeedbackData(data.feedback);
+  };
+
   return (
-    <ul>
-      {props.feedbackItems.map((item) => (
-        <li key={item.id}>{item.text}</li>
-      ))}
-    </ul>
+    <>
+      {feedbackData && <p>{feedbackData.email}</p>}
+      <ul>
+        {props.feedbackItems.map((item) => (
+          <li key={item.id}>
+            {item.text}{' '}
+            <button onClick={() => detailsHandler(item.id)}>
+              Show Details
+            </button>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 };
 

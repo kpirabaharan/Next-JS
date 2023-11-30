@@ -1,16 +1,16 @@
-import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import type { Metadata } from 'next';
+import { DM_Sans } from 'next/font/google';
 
-import Hero from "@/components/Hero";
-import Footer from "@/components/Footer";
+import Hero from '@/components/Hero';
+import Footer from '@/components/Footer';
 
-import "./globals.css";
+import './globals.css';
 
-const dmSans = DM_Sans({ subsets: ["latin"] });
+const dmSans = DM_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Anime Vault",
-  description: "Your favorite anime, all in one place.",
+  title: 'Anime Vault',
+  description: 'Your favorite anime, all in one place.',
 };
 
 export default function RootLayout({
@@ -19,9 +19,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <body className={dmSans.className}>
-        <main className="max-w-7xl mx-auto bg-[#0F1117]">
+        <main className='mx-auto max-w-7xl bg-[#0F1117]'>
           <Hero />
           {children}
           <Footer />

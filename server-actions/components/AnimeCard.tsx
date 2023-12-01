@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { MotionDiv } from './MotionDiv';
 
 export interface AnimeProp {
   id: string;
@@ -15,11 +16,30 @@ export interface AnimeProp {
 interface Prop {
   anime: AnimeProp;
   index: number;
+  page: number;
 }
 
-function AnimeCard({ anime }: Prop) {
+const variants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
+function AnimeCard({ anime, index, page }: Prop) {
+  const adjustedDelay = index % 8;
+
   return (
-    <div className='relative w-full max-w-sm rounded'>
+    <MotionDiv
+      className='relative w-full max-w-sm rounded'
+      variants={variants}
+      initial='hidden'
+      animate='visible'
+      transition={{
+        delay: adjustedDelay * 0.1,
+        ease: 'easeInOut',
+        duration: 0.5,
+      }}
+      viewport={{ amount: 2 }}
+    >
       <div className='relative h-[37vh] w-full'>
         <Image
           src={`https://shikimori.one${anime.image.original}`}
@@ -64,7 +84,7 @@ function AnimeCard({ anime }: Prop) {
           </div>
         </div>
       </div>
-    </div>
+    </MotionDiv>
   );
 }
 

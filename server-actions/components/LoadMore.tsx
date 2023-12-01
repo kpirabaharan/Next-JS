@@ -10,23 +10,26 @@ function LoadMore() {
   const { ref, inView } = useInView();
   const [page, setPage] = useState<number>(1);
   const [data, setData] = useState<AnimeProp[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchMoreAnime = async (page: number) => {
-      if (inView) {
+      if (inView && !isLoading) {
+        setIsLoading(true);
         const newData = await fetchAnime(page + 1);
         setData(prev => [...prev, ...newData]);
         setPage(page + 1);
+        setTimeout(() => setIsLoading(false), 500); // Add delay before setting loading state to false
       }
     };
     fetchMoreAnime(page);
-  }, [inView, data, page]);
+  }, [inView, data, page, isLoading]);
 
   return (
     <>
       <section className='grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
         {data.map((item: AnimeProp, index: number) => (
-          <AnimeCard key={item.id} anime={item} index={index} />
+          <AnimeCard key={item.id} anime={item} index={index} page={page} />
         ))}
       </section>
       <section className='flex w-full items-center justify-center'>

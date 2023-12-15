@@ -17,7 +17,7 @@ const FeedbackPage = (props) => {
       <ul>
         {props.feedbackItems.map((item) => (
           <li key={item.id}>
-            {item.text}{' '}
+            {item.text}
             <button onClick={() => detailsHandler(item.id)}>
               Show Details
             </button>
